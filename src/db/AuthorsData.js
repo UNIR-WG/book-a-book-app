@@ -1,4 +1,4 @@
-const authors = [{
+const authorsList = [{
     "AuthorId": 1,
     "FirstName": "Ofelia",
     "LastName": "Chiverton",
@@ -900,4 +900,4 @@ const authors = [{
     "Biography": "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem."
   }];
 
-export default authors;
+export default authorsList;

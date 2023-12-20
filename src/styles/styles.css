@@ -196,3 +196,33 @@
     width: 99%;
     height: auto;
   }
+
+  input[type=text], select {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .form-fieldset {
+    border-radius: 5px;
+    background-color: #F2F2F2;
+    padding: 20px;
+  }
+
+  label {
+    margin-left: 10px;
+  }
+
+  input[type='button'] {
+    width: auto;
+    background-color: #4caf50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }

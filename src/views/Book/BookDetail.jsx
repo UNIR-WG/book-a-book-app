@@ -24,7 +24,7 @@ export const BookDetail = () => {
           <p><strong>Descripción: </strong> { Description }</p>
         </div>
         <div className='book-detail-footer'>
-          <Link to={ `/manage-loan/${id}` }>Prestar Libro</Link>
+          <Link to={ `/create-loan/${id}` }>Prestar Libro</Link>
         </div>
       </div>
     </>

@@ -5,6 +5,7 @@ import { useBooks } from "./hooks/useBooks";
 import loansList from './db/LoansData';
 import booksList from './db/BooksData';
 import peopleList from './db/PeopleData'
+import authorsList from './db/AuthorsData'
 import { useLoansAndBooksMerge } from "./hooks/useLoansAndBooksMerge";
 import { useLoansBooksAndPeopleMerge } from "./hooks/useLoansBooksAndPeopleMerge";
 
@@ -16,6 +17,7 @@ function App() {
   localStorage.setItem('loans', JSON.stringify(loansList));
   localStorage.setItem('books', JSON.stringify(booksList));
   localStorage.setItem('people', JSON.stringify(peopleList));
+  localStorage.setItem('authors', JSON.stringify(authorsList));
   
   const books = useBooks();
   return (
