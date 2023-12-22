@@ -9,7 +9,7 @@ export const Menu = () => {
       <MenuItem path="/loans" description="Préstamos" />
       <MenuItem path="/authors" description="Autores" />
       <MenuItem path="/people" description="Personas" />
-      <MenuItem path="/book-search" description="Buscar" />
+      {/* <MenuItem path="/book-search" description="Buscar" /> */}
     </div>
   )
 }

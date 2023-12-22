@@ -12,18 +12,18 @@ export const BookDetail = () => {
   return (
     <>
       <PageTitle title={ 'DETALLE DEL LIBRO' } />
-      <div className='book-detail-container'>
-        <div className='book-detail-title'>
+      <div className='detail-container'>
+        <div className='detail-title'>
           <p><strong>{ Name }</strong></p>
         </div>
-        <div className='book-detail-content'>
+        <div className='detail-content'>
           <p><strong>ISBN: </strong> { ISBN }</p>
           <p><strong>Categoría: </strong> { Category }</p>
           <p><strong>Autor: </strong> { Author }</p>
           <p><strong>Idioma: </strong> { Language }</p>
           <p><strong>Descripción: </strong> { Description }</p>
         </div>
-        <div className='book-detail-footer'>
+        <div className='detail-footer'>
           <Link to={ `/create-loan/${id}` }>Prestar Libro</Link>
         </div>
       </div>

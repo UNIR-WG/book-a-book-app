@@ -15,6 +15,7 @@ import { People } from '../views/People/People';
 import { PersonDetail } from '../views/People/PersonDetail';
 import { TopBar } from '../components/common/TopBar';
 import { BookSearch } from '../views/Book/BookSearch';
+import { Footer } from '../components/common/Footer';
 
 function BookABookRouter() {
   return (    
@@ -45,6 +46,7 @@ const Layout = ({ children }) => (
     <div className='content'>
       {children}
     </div>
+    <Footer />
   </>
 );
 

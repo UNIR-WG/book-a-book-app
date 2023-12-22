@@ -12,8 +12,8 @@ export const LoanDetail = () => {
   return (
     <>
       <PageTitle title={ 'DETALLE DEL PRÉSTAMO' } />
-      <div className='book-detail-container'>
-        <div className='book-detail-content'>
+      <div className='detail-container'>
+        <div className='detail-content'>
           <p><strong>ISBN: </strong> { ISBN }</p>
           <p><strong>Categoría: </strong> { Category }</p>
           <p><strong>Autor: </strong> { Author }</p>
@@ -27,13 +27,7 @@ export const LoanDetail = () => {
           <p><strong>Correo Electrónico: </strong> { Email }</p>
           <p><strong>Dirección: </strong> { Address }</p>
           <p><strong>Teléfono: </strong> { PhoneNumber }</p>
-
-        </div>
-        { !IsReturned && 
-          <div className='book-detail-footer'>
-            <Link to={ `/manage-loan/${Id}` }>Devolver Libro</Link>
-          </div>
-        }        
+        </div>      
       </div>
     </>
   )

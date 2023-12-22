@@ -20,6 +20,7 @@ export const Loans = () => {
               <th>Fecha Devolucion</th>
               <th>Entregado</th>
               <th />
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,9 @@ export const Loans = () => {
                   <td>{ o.LoanDate }</td>
                   <td>{ o.DueDate }</td>
                   <td>{ o.IsReturned ? 'SI' : 'NO' }</td>
+                  <td>
+                    <Link to={ `/manage-loan/${ o.LoanId }` }>Extender Plazo</Link>
+                  </td>
                   <td>
                     <Link to={ `/loan-detail/${ o.LoanId }` }>Detalle del Prestamo</Link>
                   </td>

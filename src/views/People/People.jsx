@@ -7,7 +7,7 @@ export const People = () => {
   return (
     <>
       <PageTitle title={ 'LISTADO DE PERSONAS' } />
-      <div className='people-container'>
+      <div className='container'>
         <table className='table-container'>
           <thead>
             <tr>

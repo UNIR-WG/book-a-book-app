@@ -22,8 +22,7 @@ function App() {
   const books = useBooks();
   return (
       <BookABookContext.Provider value={{books}}>        
-        <BookABookRouter />
-        <Footer />
+        <BookABookRouter />        
       </BookABookContext.Provider>
   );
 }
