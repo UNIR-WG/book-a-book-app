@@ -10,11 +10,17 @@ import { useLoansAndBooksMerge } from "./hooks/useLoansAndBooksMerge";
 import { useLoansBooksAndPeopleMerge } from "./hooks/useLoansBooksAndPeopleMerge";
 
 function App() {
-  const loansAndBooks = useLoansAndBooksMerge(loansList, booksList);
+  const storedLoans = JSON.parse(localStorage.getItem('loans'));
+  
+  const loansAndBooks = useLoansAndBooksMerge(storedLoans, booksList);
   const mergedLoans = useLoansBooksAndPeopleMerge(loansAndBooks, peopleList);
 
+  if(storedLoans.length === 100)
+    localStorage.setItem('loans', JSON.stringify(loansList));
+  else 
+    localStorage.setItem('loans', JSON.stringify(storedLoans));
+
   localStorage.setItem('AllMergedLoans', JSON.stringify(mergedLoans));
-  localStorage.setItem('loans', JSON.stringify(loansList));
   localStorage.setItem('books', JSON.stringify(booksList));
   localStorage.setItem('people', JSON.stringify(peopleList));
   localStorage.setItem('authors', JSON.stringify(authorsList));

@@ -32,7 +32,7 @@ export const Authors = () => {
                   <td>{ o.BirthDate }</td>
                   <td><Link target='_blank' to={ o.Website }>Link a Sitio Web</Link></td>
                   <td>
-                    <Link to={ `/loan-detail/${ o.AuthorId }` }>Detalle del Autor</Link>
+                    <Link to={ `/author/${ o.AuthorId }` }>Detalle del Autor</Link>
                   </td>
                 </tr>
               ))

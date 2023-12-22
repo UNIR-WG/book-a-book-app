@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { PageTitle } from '../../components/common/PageTitle'
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import peopleList from '../../db/PeopleData';
 import booksList from '../../db/BooksData';
 import loanList from '../../db/LoansData';
@@ -9,19 +9,47 @@ import "react-datepicker/dist/react-datepicker.css"
 import loansList from '../../db/LoansData';
 
 export const ManageLoan = () => {
-  const { Id } = useParams();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   const [ returnDate, setReturnDate] = useState(new Date());
   const [ dueDate, setDueDate ] = useState(new Date());
   const [ currentDate, setCurrentDate ] = useState(new Date());
   const [ selectedPersonId, setSelectedPersonId ] = useState(1);
-  const [ loan, setLoan ] = useState([]);
+  const [ loan, setLoan] = useState({});
 
-  const loans = JSON.parse(localStorage.getItem('AllMergedLoans'));
-  const { LoanId, BookId, PersonId, LoanDate, ReturnDate, DueDate, IsReturned, RenewalCount, FirstName, LastName, Email, Address, PhoneNumber, ISBN, Name, Author, Language, Description, Category, AuthorId } = loans.find(o => o.Id == Id);
+  let loans = JSON.parse(localStorage.getItem('AllMergedLoans'));
+  const { LoanDate, ReturnDate, DueDate, IsReturned, RenewalCount, FirstName, LastName, Email, Address, PhoneNumber, ISBN, Name, Author, Language, Description, Category, AuthorId } = loans.find(o => o.LoanId == id);
 
   const ExtendLoanTerm = () => {
-    const loanFound = loansList.find( o => o.LoanId == Id );
+    const loanFound = loans.find( o => o.LoanId == id );
+
+    let foundIndex = undefined;
+    for(let i = 0; i < loans.length; i++) {
+      if(loans[i].LoanId == id)
+        foundIndex = i;
+    }
+
+    setDueDate(loanFound.DueDate);
+    setCurrentDate(loanFound.LoanDate);
+    setSelectedPersonId(loanFound.PersonId);
+
+    const newLoan = {
+      "LoanId": loanFound.LoanId,
+      "BookId": loanFound.BookId,
+      "PersonId": parseInt(selectedPersonId),
+      "LoanDate": currentDate.toISOString(),
+      "ReturnDate": returnDate.toISOString(),
+      "DueDate": dueDate.toISOString(),
+      "IsReturned": false,
+      "RenewalCount": 0
+    }
+
+    setLoan(newLoan)
+ 
+    loans[foundIndex] = loan;
+
+    navigate(`/loan-detail/${id}`, 0);
   }
 
   return (
@@ -47,9 +75,7 @@ export const ManageLoan = () => {
       <div className='form-fieldset'>
         <form>
           <label>Nueva Fecha de devolución: </label>
-          <DatePicker selected={ returnDate } onChange={(date) => {            
-              setReturnDate(date);
-            }} dateFormat="yyyy-MM-dd" />
+          <DatePicker selected={ returnDate } onChange={(date) => setReturnDate(date)} dateFormat="yyyy-MM-dd" />
           <input type='button' value={ 'Actualizar Préstamo' } onClick={ ExtendLoanTerm } />
         </form>
       </div>

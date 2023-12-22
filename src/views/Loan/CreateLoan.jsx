@@ -23,7 +23,10 @@ export const CreateLoan = () => {
   const { ISBN, Name, Category, Author, Language, Description } = booksList.find(o => o.Id == bookId);
 
   const CreateNewLoad =() => {
-    const nextLoanId = loanList.length + 1;
+
+    const storedLoans = JSON.parse(localStorage.getItem('loans'));
+
+    const nextLoanId = storedLoans.length + 1;
     const loan = {
       "LoanId": nextLoanId,
       "BookId": parseInt(bookId),
@@ -35,11 +38,11 @@ export const CreateLoan = () => {
       "RenewalCount": 0
     }
 
-    loanList.push(loan);
-    localStorage.setItem('loans', JSON.stringify(loanList));
+    storedLoans.push(loan);
+    localStorage.setItem('loans', JSON.stringify(storedLoans));
     //console.log(JSON.parse(localStorage.getItem('loans')));
 
-    const loansAndBooks = useLoansAndBooksMerge(loanList, booksList);
+    const loansAndBooks = useLoansAndBooksMerge(storedLoans, booksList);
     const mergedLoans = useLoansBooksAndPeopleMerge(loansAndBooks, peopleList);
 
     localStorage.setItem('AllMergedLoans', JSON.stringify(mergedLoans));
@@ -48,7 +51,7 @@ export const CreateLoan = () => {
 
   return (
     <>
-      <PageTitle title={ 'DETALLE DEL LIBRO' } />
+      <PageTitle title={ 'PRESTAR UN LIBRO' } />
       <div className='detail-container'>
         <div className='detail-title'>
           <p><strong>{ Name }</strong></p>
@@ -68,9 +71,7 @@ export const CreateLoan = () => {
             { peopleList.map(o => (<option value={ o.Id }>{ o.FirstName + ' ' + o.LastName }</option>)) }
           </select>
           <label>Fecha de devolución: </label>
-          <DatePicker selected={ returnDate } onChange={(date) => {            
-              setReturnDate(date);
-            }} dateFormat="yyyy-MM-dd" />
+          <DatePicker selected={ returnDate } onChange={(date) => setReturnDate(date) } dateFormat="yyyy-MM-dd" />
           <input type='button' value={ 'Registrar Préstamo' } onClick={ CreateNewLoad } />
         </form>
       </div>

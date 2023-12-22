@@ -4,10 +4,9 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 export const LoanDetail = () => {
-  const { Id } = useParams();
-
-  const loans = JSON.parse(localStorage.getItem('AllMergedLoans'));
-  const { LoanId, BookId, PersonId, LoanDate, ReturnDate, DueDate, IsReturned, RenewalCount, FirstName, LastName, Email, Address, PhoneNumber, ISBN, Name, Author, Language, Description, Category, AuthorId } = loans.find(o => o.Id == Id);
+  const { id } = useParams();
+  const loans = JSON.parse(localStorage.getItem('AllMergedLoans'));  
+  const { LoanDate, ReturnDate, DueDate, IsReturned, RenewalCount, FirstName, LastName, Email, Address, PhoneNumber, ISBN, Name, Author, Language, Description, Category } = loans.find(o => o.LoanId == id);
 
   return (
     <>
