@@ -14,7 +14,6 @@ function App() {
 
   storedLoans = storedLoans ? storedLoans :[];
 
-  debugger;
   const loansAndBooks = useLoansAndBooksMerge(storedLoans, booksList);
   const mergedLoans = useLoansBooksAndPeopleMerge(loansAndBooks, peopleList);
 

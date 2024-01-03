@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PageTitle } from '../../components/common/PageTitle'
 import { useNavigate, useParams } from 'react-router';
 import peopleList from '../../db/PeopleData';
@@ -16,39 +16,32 @@ export const ManageLoan = () => {
   const [ dueDate, setDueDate ] = useState(new Date());
   const [ currentDate, setCurrentDate ] = useState(new Date());
   const [ selectedPersonId, setSelectedPersonId ] = useState(1);
-  const [ loan, setLoan] = useState({});
-
-  let loans = JSON.parse(localStorage.getItem('AllMergedLoans'));
+  
+  let storedLoans = JSON.parse(localStorage.getItem('AllMergedLoans'));
+  
+  const [ loans, setLoans] = useState(
+    storedLoans
+  );
+  
   const { LoanDate, ReturnDate, DueDate, IsReturned, RenewalCount, FirstName, LastName, Email, Address, PhoneNumber, ISBN, Name, Author, Language, Description, Category, AuthorId } = loans.find(o => o.LoanId == id);
 
   const ExtendLoanTerm = () => {
-    const loanFound = loans.find( o => o.LoanId == id );
-
     let foundIndex = undefined;
     for(let i = 0; i < loans.length; i++) {
-      if(loans[i].LoanId == id)
+      if(loans[i].LoanId === parseInt(id))
         foundIndex = i;
     }
 
-    setDueDate(loanFound.DueDate);
-    setCurrentDate(loanFound.LoanDate);
-    setSelectedPersonId(loanFound.PersonId);
+    const newLoansObject = [...loans];
 
-    const newLoan = {
-      "LoanId": loanFound.LoanId,
-      "BookId": loanFound.BookId,
-      "PersonId": parseInt(selectedPersonId),
-      "LoanDate": currentDate.toISOString(),
-      "ReturnDate": returnDate.toISOString(),
-      "DueDate": dueDate.toISOString(),
-      "IsReturned": false,
-      "RenewalCount": 0
-    }
+    const loanFound = newLoansObject.find(o => o.LoanId === parseInt(id));
 
-    setLoan(newLoan)
- 
-    loans[foundIndex] = loan;
+    loanFound.ReturnDate = returnDate.toISOString();
+    loanFound.RenewalCount = loanFound.RenewalCount + 1;
 
+    setLoans(newLoansObject);
+    
+    localStorage.setItem('AllMergedLoans', JSON.stringify(loans));
     navigate(`/loan-detail/${id}`, 0);
   }
 

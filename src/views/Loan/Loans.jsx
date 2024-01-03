@@ -32,7 +32,7 @@ export const Loans = () => {
                   <td>{ o.Name }</td>
                   <td>{ o.Category }</td>
                   <td>{ o.LoanDate }</td>
-                  <td>{ o.DueDate }</td>
+                  <td>{ o.ReturnDate }</td>
                   <td>{ o.IsReturned ? 'SI' : 'NO' }</td>
                   <td>
                     <Link to={ `/manage-loan/${ o.LoanId }` }>Extender Plazo</Link>
