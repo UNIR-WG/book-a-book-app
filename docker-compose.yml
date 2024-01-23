@@ -1,7 +1,7 @@
 ---
 version: "2.1"
 services:
-  book-a-book-buscador:
+  book-a-book-frontend:
     image: aleixmt/book-a-book-frontend:latest
     pull_policy: always
     ports:
