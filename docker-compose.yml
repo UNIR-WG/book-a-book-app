@@ -1,0 +1,8 @@
+---
+version: "2.1"
+services:
+  book-a-book-buscador:
+    image: aleixmt/book-a-book-frontend:latest
+    pull_policy: always
+    ports:
+      - "0.0.0.0:80:80"
