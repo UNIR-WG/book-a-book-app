@@ -3,6 +3,9 @@ version: "2.1"
 services:
   book-a-book-frontend:
     image: aleixmt/book-a-book-frontend:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
     pull_policy: always
     ports:
       - "0.0.0.0:80:80"

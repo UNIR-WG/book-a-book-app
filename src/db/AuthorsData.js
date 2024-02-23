@@ -1,4 +1,4 @@
-const authorsList = [{
+/*const authorsList = [{
     "AuthorId": 1,
     "FirstName": "Alfonso",
     "LastName": "Goizueta",
@@ -36,6 +36,36 @@ const authorsList = [{
     "Biography": `Paulo Coelho is the author of "The Alchemist", he was born in 1947 in the city of Rio de Janeiro, Brazil. Being the author of 30 books that have sold over 320 million copies in 170 countries, he has become one of the most widely read authors in the world today. Paulo Coelho has been a United Nations Messenger of Peace since 2007 and this has allowed him to continue to promote intercultural dialogue and to focus on the needs of children. He is a member of the Brazilian Academy of Letters and the recipient of over 115 awards and honours, including the Hans Christian Andersen Award, the Grinzane Cavour Book Award and the Chevalier de l’Ordre National de la Légion d’Honneur, to name a few.
 
     Other titles include “The Pilgrimage”, “Brida”, "The Supreme Gift", “The Valkyries”, “By the River Piedra I Sat Down and Wept”, “Maktub”, “The Fifth Mountain”, “Manual of the Warrior of Light”, “Veronika Decides to Die”, “The Devil and Miss Prym”, “Stories for Parents, Children and Grandchildren”, “Eleven Minutes”, “The Zahir”, “Like the Flowing River”, “The Witch of Portobello”, “The Winner Stands Alone”, “Aleph”, “Manuscript Found in Accra”, “Adultery”, “The Spy”, “Hippie”. Also “Journey” guided journal.`
-  }];
+  }];*/
+
+const authorsList = [{
+    "AuthorId": 1,
+    "FirstName": "Alfonso",
+    "LastName": "Goizueta",
+    "BirthDate": "8/10/1908",
+    "Nationality": "China",
+    "Email": "ochiverton0@nps.gov",
+    "Website": "https://www.amazon.es/stores/Alfonso-Goizueta/author/B0CMDBZWDC?ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true",
+    "Biography": "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.\n\nNam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus."
+}];
+
+const userAction = async () => {
+    let myBody={
+        "targetMethod": "GET"
+    };
+    const response = await fetch('https://book-a-book-gateway-production.up.railway.app/buscador/authors', {
+        method: 'POST',
+        body: myBody, // string or object
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const myJson = await response.json(); //extract JSON from the http response
+    console.log(myJson)
+    // do something with myJson
+}
+
+userAction()
+
 
 export default authorsList;
